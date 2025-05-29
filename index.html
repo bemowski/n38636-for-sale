@@ -74,9 +74,38 @@
       color: #333;
     }
 
+    .swiper-thumbnail {
+      position: relative;
+      padding: 0 40px;
+    }
+
+    .swiper-thumbnail .swiper-button-next,
+    .swiper-thumbnail .swiper-button-prev {
+      color: #333;
+      background: rgba(255, 255, 255, 0.8);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .swiper-thumbnail .swiper-button-next:after,
+    .swiper-thumbnail .swiper-button-prev:after {
+      font-size: 16px;
+    }
+
+    .swiper-thumbnail .swiper-button-next {
+      right: 5px;
+    }
+
+    .swiper-thumbnail .swiper-button-prev {
+      left: 5px;
+    }
+
     .swiper-thumbnail .swiper-slide {
       opacity: 0.4;
       cursor: pointer;
+      transition: opacity 0.3s ease;
     }
 
     .swiper-thumbnail .swiper-slide-thumb-active {
@@ -85,9 +114,10 @@
     }
 
     .swiper-thumbnail img {
-      height: 100px;
+      height: 80px;
       width: auto;
       object-fit: cover;
+      border-radius: 4px;
     }
 
     @media (max-width: 900px) {
@@ -229,6 +259,8 @@
         <div class="swiper-slide"><img src="images/PXL_20250518_212138857.jpg" alt="Thumb View 12" /></div>
         <div class="swiper-slide"><img src="images/PXL_20250518_212246785.jpg" alt="Thumb View 13" /></div>
       </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
     </div>
   </div>
 
@@ -257,9 +289,24 @@
   <script type="module">
     const thumbSwiper = new Swiper('.swiper-thumbnail', {
       spaceBetween: 10,
-      slidesPerView: 3,
+      slidesPerView: 5,
       freeMode: true,
       watchSlidesProgress: true,
+      navigation: {
+        nextEl: '.swiper-thumbnail .swiper-button-next',
+        prevEl: '.swiper-thumbnail .swiper-button-prev',
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 3,
+        },
+        480: {
+          slidesPerView: 4,
+        },
+        768: {
+          slidesPerView: 5,
+        }
+      }
     });
 
     const mainSwiper = new Swiper('.main-swiper', {
